@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right, #F5ECE5 1px, transparent 1px), linear-gradient(to bottom, #F5ECE5 1px, transparent 1px);
+    background-size: 10px 10px;
+    background-position: center center;
+    background-color: rgba(242, 219, 178, 0.1);
+}
+
+#welcome,
+#difficultySelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+}
+
+#difficultySelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="radio"] {
+    display: none; /* 隐藏原始的单选按钮 */
+}
+
+input[type="radio"] + label {
+    display: flex;
+    align-items: center; /* 水平居中 */
+    margin: 5px; /* 调整垂直间距 */
+    cursor: pointer;
+}
+
+input[type="radio"] + label::before {
+    content: "";
+    display: inline-block;
+    width: 10px; /* 调整选择框大小 */
+    height: 10px; /* 调整选择框大小 */
+    border: 1px solid #000;
+    border-radius: 50%; /* 将选择框变为圆形 */
+    margin-right: 10px; /* 调整选择框与文字间距 */
+}
+
+input[type="radio"]:checked + label::before {
+    background-color: #000; /* 选中时的背景颜色 */
+}
+
+#edit:hover {
+    background: rgba(100, 100, 100, 0.2);
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#player-name {
+    margin-left: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.scores-container {
+    margin-right: 30px;
+}
+
+#difficultyAndIcon {
+    display: flex;
+    align-items: center;
+}
+
+#difficulty {
+    margin-right: 10px;
+}
+
+.score-frame {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+    height: 150px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.player-score-frame, .ai-score-frame {
+    width: 230px;
+    height: 100%;
+    border-radius: 15px;
+    background: #FFF18F;
+    box-shadow: 10px 10px 20px #d9cd7a, -10px -10px 20px #ffffa4;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-score-title, .ai-score-title {
+    position: absolute;
+    left: 30px;
+    top: -10px;
+    font-size: larger;
+    font-family: cursive;
+    color: #333;
+}
+
+.score {
+    font-size: xx-large;
+    font-family: "Consolas", "Courier New", monospace;
+    color: #333;
+}
+
+#player-name {
+    font-size: xx-large;
+    font-family: cursive;
+}

@@ -1,0 +1,2 @@
+class DifficultIsNotSet(Exception):
+    pass
