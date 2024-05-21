@@ -105,7 +105,7 @@ input[type="radio"]:checked + label::before {
     height: 100%;
     border-radius: 15px;
     background: #FFF18F;
-    box-shadow: 10px 10px 20px #d9cd7a, -10px -10px 20px #ffffa4;
+    /*box-shadow: 10px 10px 20px #d9cd7a, -10px -10px 20px #ffffa4;*/
 
     position: relative;
     display: flex;
@@ -132,4 +132,140 @@ input[type="radio"]:checked + label::before {
 #player-name {
     font-size: xx-large;
     font-family: cursive;
+}
+
+h1,
+h2 {
+    color: #292623;
+}
+
+.message-box {
+    width: 261px;
+    position: fixed;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: slideIn 0.5s forwards;
+}
+
+.message-box-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.message-box-title {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+.message-box-text {
+    font-size: 16px;
+    color: #666;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.message-box-actions button {
+    margin: 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #fff;
+    color: rgba(234, 160, 0, 0.8);
+    cursor: pointer;
+}
+
+.message-box-actions button:last-child {
+    margin-right: 0;
+}
+
+/* 遮罩层 */
+#overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* 淡入淡出动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        top: 45%;
+        opacity: 0;
+    }
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        top: 50%;
+        opacity: 1;
+    }
+    to {
+        top: 45%;
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+.frame-fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.frame-fade-in.show {
+    opacity: 1;
+}
+
+.frame-fade-out {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.frame-fade-out.hide {
+    opacity: 0;
 }

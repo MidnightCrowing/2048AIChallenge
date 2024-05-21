@@ -9,6 +9,7 @@
     <!-- 样式表链接 -->
     <link href="resource/css/a.min.css" rel="stylesheet" type="text/css">
     <link href="resource/css/my.css" rel="stylesheet" type="text/css">
+    <link href="resource/css/theme.css" rel="stylesheet" type="text/css">
 
     <!-- 网站图标 -->
     <link rel="shortcut icon" href="https://www.2048123.com/skin/2048/img/favicon.ico">
@@ -26,13 +27,12 @@
 </head>
 
 <body>
-<div id="welcome">
+<div class="frame-fade-in show" id="welcome">
     <h1>Welcome to 2048AIChallenge</h1>
     <div style="font-size: x-small;">如果按下按钮没有反应, 请等待页面加载完后再次尝试.</div>
-    <button onclick="titleStart()">开始游戏</button>
+    <button class="ripple-button" onclick="titleStart()" style="top: 40px;">开始游戏</button>
 </div>
-
-<div id="difficultySelection" style="display: none;">
+<div class="frame-fade-in" id="difficultySelection" style="display: none;">
     <h2>请选择难度</h2>
     <input type="radio" id="easy" name="difficulty" value="easy">
     <label for="easy">简单</label>
@@ -41,12 +41,24 @@
     <input type="radio" id="hard" name="difficulty" value="hard">
     <label for="hard">困难</label>
     <br>
-    <button onclick="confirmDifficulty()">确定</button>
+    <button class="ripple-button" onclick="confirmDifficulty()">确定</button>
 </div>
 
-<div id="scoreChallenge" style="display: none;">
+<div id="overlay">
+    <div id="custom-message-box" class="message-box">
+        <div class="message-box-content">
+            <h6 class="message-box-title">Warning</h6>
+            <p class="message-box-text">请先选择难度！</p>
+        </div>
+        <div class="message-box-actions" style="display: flex; flex-direction: row-reverse;">
+            <button onclick="hidePopup()">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="frame-fade-in" id="scoreChallenge" style="display: none;">
     <div id="difficultyAndIcon">
-        <h2 id="difficulty" ></h2>
+        <h2 id="difficulty"></h2>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" id="edit"
              onclick="titleStart()">
             <path fill="#6E6E6E" fill-rule="evenodd"
@@ -63,10 +75,10 @@
             <div id="ai-score" class="score"></div>
         </div>
     </div>
-    <button id="start-btn" onclick="startGame()">开始</button>
+    <button class="ripple-button" id="start-btn" onclick="startGame()">开始</button>
 </div>
 
-<div id="gameContainer" style="display: none;">
+<div class="frame-fade-in" id="gameContainer" style="display: none;">
     <div class="container" id="container">
         <div class="heading">
             <h1 id="player-name"></h1>
@@ -138,11 +150,14 @@
         </div>
 
     </div>
+    <div style="margin-top: 20px">
+        游戏引擎来自于:
+        <a href="https://www.2048123.com/" target="_blank">https://www.2048123.com/</a>
+    </div>
 </div>
 
 <div class="media" style="position:absolute; left: -9999px;">
     <audio id="Mp3Me" style="clip-path: polygon(0px 0,0px 0,0px 0,0px 0);" autoplay="autoplay" controls="controls">
-        <!--        <source src="./2048游戏 - 网页在线版_files/du.mp3">-->
     </audio>
     <audio id="Mp3Me2" style="clip-path: polygon(0px 0,0px 0,0px 0,0px 0);" autoplay="autoplay" controls="controls">
         <source src="resource/mp3/bo.mp3">
@@ -157,6 +172,7 @@
 <script src="resource/js/tongji.js"></script>
 <script src="resource/js/a.min.js"></script>
 <script src="resource/js/my.js"></script>
+<script src="resource/js/theme.js"></script>
 
 </body>
 </html>

@@ -4,11 +4,47 @@ let player_score = 0;
 let ai_score = 0;
 const socket = io.connect('http://localhost:8413');
 
+function showPopup() {
+    var overlay = document.getElementById("overlay");
+    var messageBox = document.getElementById("custom-message-box");
+    overlay.style.display = "block";
+    messageBox.style.display = "block";
+    setTimeout(function () {
+        overlay.classList.remove('fade-out');
+        messageBox.classList.remove('slide-out');
+    }, 10); // 延迟以确保添加类后动画生效
+}
+
+function hidePopup() {
+    var overlay = document.getElementById("overlay");
+    var messageBox = document.getElementById("custom-message-box");
+    overlay.classList.add('fade-out');
+    messageBox.classList.add('slide-out');
+    setTimeout(function () {
+        overlay.style.display = "none";
+        messageBox.style.display = "none";
+    }, 300); // 与动画持续时间一致
+}
+
 function titleStart() {
-    document.getElementById("welcome").style.display = "none";
-    document.getElementById("difficultySelection").style.display = "block";
-    document.getElementById("scoreChallenge").style.display = "none";
-    document.getElementById("gameContainer").style.display = "none";
+    const welcome = document.getElementById("welcome");
+    const difficultySelection = document.getElementById("difficultySelection");
+    const scoreChallenge = document.getElementById("scoreChallenge");
+    const gameContainer = document.getElementById("gameContainer");
+
+    // 淡出效果
+    welcome.classList.remove("show");
+    scoreChallenge.classList.remove("show");
+    welcome.classList.add("hide");
+    scoreChallenge.classList.add("hide");
+    setTimeout(() => {
+        welcome.style.display = "none";
+        difficultySelection.style.display = "block";
+        scoreChallenge.style.display = "none";
+        gameContainer.style.display = "none";
+        // 触发淡入效果
+        difficultySelection.classList.add("show");
+    }, 500); // 与transition时间相同
 }
 
 function confirmDifficulty() {
@@ -25,35 +61,66 @@ function confirmDifficulty() {
     const selectedDifficulty = document.querySelector('input[name="difficulty"]:checked');
     let selected_test;
     if (selectedDifficulty) {
-        document.getElementById("welcome").style.display = "none";
-        document.getElementById("difficultySelection").style.display = "none";
-        document.getElementById("scoreChallenge").style.display = "block";
-        document.getElementById("gameContainer").style.display = "none";
+        const welcome = document.getElementById("welcome");
+        const difficultySelection = document.getElementById("difficultySelection");
+        const scoreChallenge = document.getElementById("scoreChallenge");
+        const gameContainer = document.getElementById("gameContainer");
 
-        sendData('game_difficult_change', selectedDifficulty.value);
+        // 淡出效果
+        difficultySelection.classList.remove("show");
+        difficultySelection.classList.add("hide");
+        welcome.classList.remove("show");
+        welcome.classList.add("hide");
 
-        const difficulty_a = document.getElementById("difficulty");
-        if (selectedDifficulty.value === "easy") {
-            selected_test = "简单";
-        } else if (selectedDifficulty.value === "medium") {
-            selected_test = "中等";
-        } else {
-            selected_test = "困难";
-        }
-        difficulty_a.textContent = "难度: " + selected_test;
+        setTimeout(() => {
+            welcome.style.display = "none";
+            difficultySelection.style.display = "none";
+            scoreChallenge.style.display = "block";
+            scoreChallenge.classList.add("show"); // 添加淡入效果
+            gameContainer.style.display = "none";
+
+            sendData('game_difficult_change', selectedDifficulty.value);
+
+            const difficulty_a = document.getElementById("difficulty");
+            if (selectedDifficulty.value === "easy") {
+                selected_test = "简单";
+            } else if (selectedDifficulty.value === "medium") {
+                selected_test = "中等";
+            } else {
+                selected_test = "困难";
+            }
+            difficulty_a.textContent = "难度: " + selected_test;
+        }, 500); // 等待淡出效果完成
 
     } else {
-        alert("请先选择难度！");
+        showPopup();
     }
 }
 
 function startGame() {
     game_start = true;
 
-    document.getElementById("welcome").style.display = "none";
-    document.getElementById("difficultySelection").style.display = "none";
-    document.getElementById("scoreChallenge").style.display = "none";
-    document.getElementById("gameContainer").style.display = "block";
+    const welcome = document.getElementById("welcome");
+    const difficultySelection = document.getElementById("difficultySelection");
+    const scoreChallenge = document.getElementById("scoreChallenge");
+    const gameContainer = document.getElementById("gameContainer");
+
+    // 淡出效果
+    welcome.classList.remove("show");
+    welcome.classList.add("hide");
+    difficultySelection.classList.remove("show");
+    difficultySelection.classList.add("hide");
+    scoreChallenge.classList.remove("show");
+    scoreChallenge.classList.add("hide");
+
+    setTimeout(() => {
+        welcome.style.display = "none";
+        difficultySelection.style.display = "none";
+        scoreChallenge.style.display = "none";
+        gameContainer.style.display = "block";
+        // 添加淡入效果
+        gameContainer.classList.add("show");
+    }, 500); // 等待淡出效果完成
 
     // 切换游戏进度
     if (game_progress === "none") {
